@@ -4,20 +4,24 @@ const resultP = document.getElementById("results");
 const recordBtn = document.getElementById("recordBtn");
 const languageSelect = document.getElementById("language");
 
-// 🎤 Call backend speech recognition
-recordBtn.addEventListener("click", async () => {
-  try {
-    const res = await fetch("http://127.0.0.1:5000/speech");
-    const data = await res.json();
+// 🎤 Browser speech recognition
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+recognition.lang = "en-US";
+recognition.interimResults = false;
 
-    if (data.text) {
-      inputText.value = data.text;
-    } else {
-      alert("Error: " + data.error);
-    }
-  } catch (err) {
-    alert("Could not connect to speech recognition server");
-  }
+// Mic button → speech to text
+recordBtn.addEventListener("click", () => {
+  recognition.start();
+});
+
+recognition.addEventListener("result", (e) => {
+  const transcript = e.results[0][0].transcript;
+  inputText.value = transcript;
+});
+
+recognition.addEventListener("end", () => {
+  console.log("Stopped listening");
 });
 
 // 🌍 Translate on click
@@ -26,7 +30,7 @@ translateBtn.addEventListener("click", async () => {
   const lang = languageSelect.value;
 
   if (!text) {
-    alert("Enter some text or record first");
+    resultP.innerText = "⚠️ Enter some text or record first.";
     return;
   }
 
@@ -34,7 +38,7 @@ translateBtn.addEventListener("click", async () => {
     const res = await fetch("http://127.0.0.1:5000/translate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: text, target_lang: lang }),
+      body: JSON.stringify({ text, target_lang: lang }),
     });
 
     const data = await res.json();
@@ -42,9 +46,9 @@ translateBtn.addEventListener("click", async () => {
     if (data.translated) {
       resultP.innerText = data.translated;
     } else {
-      resultP.innerText = "Error: " + data.error;
+      resultP.innerText = "⚠️ " + data.error;
     }
   } catch (err) {
-    resultP.innerText = "Could not connect to translation server.";
+    resultP.innerText = "⚠️ Could not connect to translation server.";
   }
 });

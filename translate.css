@@ -129,6 +129,8 @@ body {
   width: 100px;
   margin-top: 50px;
   border-radius: 10px;
+  position: absolute;
+  margin-top: 140px;
 }
 
 .btntrans:hover{

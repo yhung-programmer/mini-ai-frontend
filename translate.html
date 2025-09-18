@@ -7,22 +7,23 @@
   <link rel="stylesheet" href="translate.css">
 </head>
 <body>
-  <!-- <h1 id="glow-text">Hello, I am SOLOWISE your AI assistant</h1> -->
   <h1 id="glow-text" style="margin-bottom: 40px;">Translator</h1>
 
   <div class="transpage">
     <!-- Input + Record Button -->
     <div class="translate">
       <input type="text" id="inputText" placeholder="Type or record what you want to translate" class="transinp">
+      
       <button id="recordBtn" class="record">
         <img src="./mic.png" alt="Record" class="recordimg">
       </button>
+      <button id="translateBtn" class="btntrans">Translate</button>
+
     </div>
 
     <!-- Arrow -->
-    <h2  class="arrow" id="glow-text">➡</h2>
-    <h2  class="arrow2" id="glow-text">⬇</h2>
-
+    <h2 class="arrow" id="glow-text">➡</h2>
+    <h2 class="arrow2" id="glow-text">⬇</h2>
 
     <!-- Results Section -->
     <div class="results">
@@ -44,15 +45,11 @@
         <option value="it">Italian</option>
         <option value="ja">Japanese</option>
         <option value="ko">Korean</option>
-        <!-- 🔥 You can add all other supported languages here -->
       </select>
 
-      
       <div class="results-box">
         <p id="results" style="color: darkorange;">Your translation will appear here...</p>
       </div>
-    <button id="translateBtn" class="btntrans">Translate</button>
-
     </div>
   </div>
 

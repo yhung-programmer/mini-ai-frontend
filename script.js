@@ -1,5 +1,6 @@
 const micBtn = document.querySelector(".recordimg");
 const inputBox = document.getElementById("ASK");
+const responseBox = document.getElementById("responseBox"); // where we’ll drop AI replies
 
 // Speech Recognition (browser side)
 window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -38,20 +39,23 @@ inputBox.addEventListener("keypress", (e) => {
 // Send query to Flask backend
 async function sendToAssistant(query) {
   try {
-    const res = await fetch("https://mini-ai-backend-1.onrender.com/assistant", {
+    const res = await fetch("http://127.0.0.1:5000/assistant", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query })
     });
 
     const data = await res.json();
-    console.log("AI Response:", data.response);
+    console.log("AI Response:", data);
 
-    // Show response on page
-    alert("🤖 " + data.response);
+    if (data.url) {
+      responseBox.innerHTML = `🤖 <a href="${data.url}" target="_blank">${data.text}</a>`;
+    } else {
+      responseBox.textContent = "🤖 " + data.text;
+    }
 
   } catch (err) {
     console.error("Error talking to backend:", err);
-    alert("⚠️ Could not connect to AI assistant.");
+    responseBox.innerHTML = "⚠️ Could not connect to AI assistant.";
   }
 }
