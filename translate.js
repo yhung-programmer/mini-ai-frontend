@@ -35,7 +35,7 @@ translateBtn.addEventListener("click", async () => {
   }
 
   try {
-    const res = await fetch("http://127.0.0.1:5000/translate", {
+    const res = await fetch("https://mini-ai-backend-1.onrender.com/translate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text, target_lang: lang }),

@@ -132,8 +132,23 @@ body {
   position: absolute;
   margin-top: 140px;
 }
+.home{
+  height: 35px;
+  background-color: black;
+  border: none;
+  color: red;
+  width: 200px;
+  /* margin-top: 50px; */
+  border-radius: 10px;
+  /* position: absolute; */
+  margin-top: 40px;
+}
 
 .btntrans:hover{
+  background-color: red;
+  color: black;
+}
+.home:hover{
   background-color: red;
   color: black;
 }

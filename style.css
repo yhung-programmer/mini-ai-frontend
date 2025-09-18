@@ -16,6 +16,22 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.home{
+  height: 35px;
+  background-color: black;
+  border: none;
+  color: red;
+  width: 200px;
+  /* margin-top: 50px; */
+  border-radius: 10px;
+  /* position: absolute; */
+  margin-top: 40px;
+}
+
+.home:hover{
+  background-color: red;
+  color: black;
+}
 
 /* Background color animation */
 @keyframes glowBackground {
