@@ -1,0 +1,154 @@
+/* Body glowing background */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(270deg, #ff0057, #00d9ff, #00ff85, #ffeb3b, #ff5722);
+  background-size: 1000% 1000%;
+  animation: glowBackground 15s ease infinite;
+  font-family: Arial, sans-serif;
+}
+
+/* Background color animation */
+@keyframes glowBackground {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Glowing text effect */
+#glow-text {
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  animation: textGlow 2s ease-in-out infinite alternate;
+  margin-top: 50px;
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 5px #00d9ff, 0 0 10px #00d9ff, 0 0 20px #00ff85;
+    opacity: 0.7;
+  }
+  100% {
+    text-shadow: 0 0 20px #ff0057, 0 0 40px #ff5722, 0 0 60px #ffeb3b;
+    opacity: 1;
+  }
+}
+
+/* Center container */
+.askmic {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;              /* responsive width */
+  max-width: 500px;        /* never too big */
+  margin: 30px auto;
+}
+
+/* 🔹 Input with glowing border */
+#ASK {
+  flex: 1;                 /* input takes full remaining space */
+  height: 75px;
+  padding: 10px 50px 10px 15px;
+  border: 3px solid #00ff88;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  box-sizing: border-box;
+
+  /* Glow effects */
+  box-shadow: 0 0 10px #00ff88, 0 0 25px #00ffcc, inset 0 0 10px #00ff88;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+#ASK:focus {
+  border-color: #ff0057;
+  box-shadow: 0 0 20px #ff0057, 0 0 40px #ff5722, inset 0 0 15px #ff0057;
+}
+
+/* 🔹 Mic button glowing */
+.mic-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  padding: 0;
+
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00d9ff, 0 0 20px #00ff85, inset 0 0 10px #00d9ff;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+.ask{
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 70px;
+}
+
+.mic-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #ff0057, 0 0 30px #ff5722, inset 0 0 15px #ff0057;
+}
+
+/* Mic image */
+.recordimg {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px #00ff88);
+}
+
+/* 🔹 Stronger glowing animation when listening */
+.recordimg.listening {
+  filter: drop-shadow(0 0 25px #00ff88);
+  animation: pulseMic 1s infinite alternate;
+}
+
+@keyframes pulseMic {
+  from { transform: scale(1); }
+  to   { transform: scale(1.2); }
+}
+
+/* 🔹 Responsive tweaks */
+@media (max-width: 768px) {
+  #glow-text {
+    font-size: 24px;
+  }
+
+  #ASK {
+    font-size: 14px;
+    padding: 8px 45px 8px 12px;
+  }
+
+  .mic-btn {
+    height: 30px;
+    width: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  #glow-text {
+    font-size: 20px;
+    /* rotate: 90deg; */
+  }
+
+  #ASK {
+    font-size: 13px;
+    height: 40px;
+  }
+
+  .mic-btn {
+    height: 28px;
+    width: 28px;
+  }
+}

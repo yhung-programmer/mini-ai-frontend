@@ -1,0 +1,186 @@
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(270deg, #ff0057, #00d9ff, #00ff85, #ffeb3b, #ff5722);
+  background-size: 1000% 1000%;
+  animation: glowBackground 15s ease infinite;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Background animation */
+@keyframes glowBackground {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Input + mic aligned */
+.translate {
+  border: 5px solid blue;
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  display: flex;
+  align-items: center; /* input + mic vertically centered */
+  gap: 10px;
+  width: 320px;
+  min-height: 70px;
+  height: 200px;
+  box-sizing: border-box;
+}
+
+.transinp {
+  flex: 1;
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  padding: 0 10px;
+  font-size: 16px;
+  background: transparent;
+  color: firebrick;
+}
+
+.record {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.recordimg {
+  height: 40px;
+  width: 40px;
+  transition: transform 0.2s ease;
+}
+
+.record:hover .recordimg {
+  transform: scale(1.1);
+}
+
+.recordimg.listening {
+  filter: drop-shadow(0 0 25px #00ff88);
+  animation: pulseMic 1s infinite alternate;
+}
+
+@keyframes pulseMic {
+  from { transform: scale(1); }
+  to { transform: scale(1.2); }
+}
+
+/* Layout */
+.transpage {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.results {
+  background: white;
+  border: 5px solid green;
+  border-radius: 12px;
+  width: 320px;
+  min-height: 200px;
+  padding: 15px;
+  box-sizing: border-box;
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+#glow-text {
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  animation: textGlow 2s ease-in-out infinite alternate;
+  margin-top: 30px;
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 5px #000000, 0 0 10px #00d9ff, 0 0 20px #00ff85;
+    opacity: 0.7;
+  }
+  100% {
+    text-shadow: 0 0 20px #ff0057, 0 0 40px #0906b4b2, 0 0 60px #ffeb3b;
+    opacity: 1;
+  }
+}
+
+.arrow {
+  font-size: 60px;
+  color: white;
+  margin: 20px;
+  transition: transform 0.3s ease;
+}
+
+.btntrans{
+  height: 35px;
+  background-color: black;
+  border: none;
+  color: red;
+  width: 100px;
+  margin-top: 50px;
+  border-radius: 10px;
+}
+
+.btntrans:hover{
+  background-color: red;
+  color: black;
+}
+
+#language{
+  background-color: black;
+  color: white;
+  height: 30px
+}
+
+.arrow2{
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .transpage {
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  
+
+  .arrow {
+    font-size: 50px;
+    margin: 15px 0;
+    display: none;
+  }
+  .arrow2{
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .translate, .results {
+    width: 90%;
+    max-width: 350px;
+    
+  }
+
+  .arrow {
+    font-size: 40px;
+    display: none;
+  }
+  .arrow2{
+    display: block;
+
+  }
+
+  
+}

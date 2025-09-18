@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <div class="homepage">
+    <h1 id="title1">SOLOWISE</h1>
+    <h1 id="title2" style="margin-top: 50px; margin-bottom: 50px;">Welcome dear user feel free to use our services</h1>
+  </div>
+
+  <div>
+    <button class="ai" onclick="goToAI()">Mini AI</button>
+    <button class="translator" onclick="goToTranslator()">Translator</button>
+  </div>
+
+  <script>
+  function animateText(id) {
+    const el = document.getElementById(id);
+    const text = el.innerText;
+    el.innerText = "";
+
+    text.split("").forEach((char, i) => {
+      const span = document.createElement("span");
+
+      if (char === " ") {
+        // Preserve spaces
+        span.innerHTML = "&nbsp;";
+      } else {
+        span.innerText = char;
+        span.classList.add("letter");
+        span.style.animationDelay = `${i * 0.15}s`;
+        
+        // After bounce, start glow
+        setTimeout(() => {
+          span.classList.add("glow");
+        }, (i * 150) + 600);
+      }
+
+      el.appendChild(span);
+    });
+  }
+
+  animateText("title1");
+  animateText("title2");
+</script>
+
+<script>
+    function goToAI() {
+      window.location.href = "ask.html";  // navigate to ask.html
+    }
+
+    function goToTranslator() {
+      window.location.href = "translate.html";  // navigate to translate.html
+    }
+  </script>
+
+
+
+</body>
+</html>
