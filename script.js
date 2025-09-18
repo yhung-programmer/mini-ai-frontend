@@ -38,7 +38,7 @@ inputBox.addEventListener("keypress", (e) => {
 // Send query to Flask backend
 async function sendToAssistant(query) {
   try {
-    const res = await fetch("https://mini-ai-backend-z22r.onrender.com/assistant", {
+    const res = await fetch("https://mini-ai-backend-1.onrender.com/assistant", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ query })
